@@ -68,6 +68,7 @@ CREATE TABLE IF NOT EXISTS conversations (
   confidence           REAL NOT NULL DEFAULT 1.0,
   transfer_note        TEXT,
   unread_count         INTEGER NOT NULL DEFAULT 0,
+  agent_state          TEXT,                       -- JSON do estado do fluxo do agent
   related_ticket_id    TEXT REFERENCES tickets(id),
   created_at           TEXT NOT NULL,
   updated_at           TEXT NOT NULL
