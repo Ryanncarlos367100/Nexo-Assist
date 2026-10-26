@@ -170,6 +170,25 @@ export async function listTickets(ctx: AuthContext): Promise<Ticket[]> {
   return rows.map(rowToTicket);
 }
 
+/**
+ * Lista os chamados de um funcionário específico — restrito a analistas (usado
+ * no console). Funcionários não podem acessar chamados de terceiros.
+ */
+export async function listTicketsByEmployee(
+  ctx: AuthContext,
+  employeeId: string,
+): Promise<Ticket[]> {
+  await tick();
+  maybeFail();
+  if (ctx.role !== "analyst") throw new TicketAccessError();
+  const rows = db()
+    .prepare(
+      "SELECT * FROM tickets WHERE requester_id = ? ORDER BY datetime(created_at) DESC",
+    )
+    .all(employeeId) as TicketRow[];
+  return rows.map(rowToTicket);
+}
+
 /** Lista apenas os chamados abertos (não resolvidos) do funcionário. */
 export async function listOpenTickets(ctx: AuthContext): Promise<Ticket[]> {
   const all = await listTickets(ctx);
