@@ -79,13 +79,18 @@ export function getConversation(id: string): Conversation | null {
   return row ? rowToConversation(row) : null;
 }
 
-/** Retorna a conversa ativa (não resolvida) mais recente do funcionário. */
+/**
+ * Conversa ATIVA com o agent (status 'agent') mais recente do funcionário.
+ * Conversas pausadas (transferidas/com analista) não são reutilizadas no chat
+ * do funcionário — elas seguem no console até o analista encerrar. Assim o
+ * funcionário sempre tem o agent pronto para um novo assunto.
+ */
 export function getActiveConversationForEmployee(
   employeeId: string,
 ): Conversation | null {
   const row = db()
     .prepare(
-      `SELECT * FROM conversations WHERE employee_id = ? AND status != 'resolved'
+      `SELECT * FROM conversations WHERE employee_id = ? AND status = 'agent'
        ORDER BY datetime(updated_at) DESC LIMIT 1`,
     )
     .get(employeeId) as ConversationRow | undefined;

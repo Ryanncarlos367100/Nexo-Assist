@@ -1,0 +1,153 @@
+.shell {
+  display: grid;
+  grid-template-columns: 232px 1fr;
+  height: 100vh;
+  overflow: hidden;
+}
+.sidebar {
+  background: var(--bg-sidebar);
+  color: #cfd8e2;
+  display: flex;
+  flex-direction: column;
+  padding: 18px 14px;
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #fff;
+  font-weight: 600;
+  font-size: 15px;
+  padding: 6px 8px 20px;
+}
+.nav {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.navItem {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  padding: 9px 11px;
+  border-radius: 8px;
+  color: #aeb8c2;
+  font-size: 14px;
+  cursor: pointer;
+  background: transparent;
+  border: 0;
+  width: 100%;
+  text-align: left;
+  text-decoration: none;
+}
+.navItem:hover {
+  background: #26303d;
+  color: #fff;
+  text-decoration: none;
+}
+.navItemActive {
+  background: var(--primary);
+  color: #fff;
+}
+.navItemActive:hover {
+  background: var(--primary);
+  color: #fff;
+}
+.spacer {
+  flex: 1;
+}
+.userBox {
+  border-top: 1px solid #2d3a4b;
+  padding-top: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.userRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #33465c;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 600;
+  flex: none;
+}
+.userName {
+  color: #fff;
+  font-size: 13px;
+  font-weight: 500;
+}
+.userEmail {
+  color: #8a96a3;
+  font-size: 11.5px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 150px;
+}
+.logout {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  color: #aeb8c2;
+  font-size: 13px;
+  background: transparent;
+  border: 0;
+  padding: 6px 8px;
+  cursor: pointer;
+  border-radius: 8px;
+}
+.logout:hover {
+  background: #26303d;
+  color: #fff;
+}
+.main {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden;
+  background: var(--bg);
+}
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 28px;
+  border-bottom: 1px solid var(--rule);
+  flex: none;
+}
+.breadcrumb {
+  font-size: 13.5px;
+  color: var(--ink-3);
+}
+.breadcrumb b {
+  color: var(--ink);
+  font-weight: 500;
+}
+.online {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 13px;
+  color: var(--success);
+}
+.online .dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--success);
+}
+.content {
+  flex: 1;
+  overflow: auto;
+  min-height: 0;
+}
