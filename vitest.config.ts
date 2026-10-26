@@ -6,6 +6,11 @@ export default defineConfig({
     environment: "node",
     include: ["tests/**/*.test.ts"],
     globals: false,
+    env: {
+      // Banco isolado para testes; falhas transitórias desligadas por padrão.
+      DATABASE_PATH: "./data/test.db",
+      TICKET_SERVICE_FAILURE_RATE: "0",
+    },
   },
   resolve: {
     alias: {
