@@ -523,7 +523,7 @@ const conversations: SeedConversation[] = [
   {
     id: "conv-bruno",
     employeeId: "u-bruno",
-    status: "awaiting_analyst",
+    status: "agent",
     assignedAnalystId: null,
     confidence: 0.41,
     transferNote: null,
