@@ -89,18 +89,25 @@ export default function ConsoleClient({ analyst }: { analyst: User }) {
     }
   }, []);
 
-  const loadDetail = useCallback(async (id: string) => {
-    const res = await fetch(`/api/console/conversations/${id}`);
+  const loadTickets = useCallback(async (employeeId: string) => {
+    const res = await fetch(`/api/console/employees/${employeeId}/tickets`);
     if (res.ok) {
-      const data = (await res.json()) as DetailPayload;
-      setDetail(data);
-      const tRes = await fetch(`/api/console/employees/${data.employee.id}/tickets`);
-      if (tRes.ok) {
-        const td = (await tRes.json()) as { tickets: Ticket[] };
-        setTickets(td.tickets);
-      }
+      const td = (await res.json()) as { tickets: Ticket[] };
+      setTickets(td.tickets);
     }
   }, []);
+
+  const loadDetail = useCallback(
+    async (id: string) => {
+      const res = await fetch(`/api/console/conversations/${id}`);
+      if (res.ok) {
+        const data = (await res.json()) as DetailPayload;
+        setDetail(data);
+        await loadTickets(data.employee.id);
+      }
+    },
+    [loadTickets],
+  );
 
   useEffect(() => {
     void loadList();
@@ -123,7 +130,11 @@ export default function ConsoleClient({ analyst }: { analyst: User }) {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(body),
     });
-    if (res.ok) setDetail((await res.json()) as DetailPayload);
+    if (res.ok) {
+      const data = (await res.json()) as DetailPayload;
+      setDetail(data);
+      await loadTickets(data.employee.id);
+    }
     void loadList();
   }
 

@@ -16,7 +16,7 @@ const base = (props: P): P => ({
 
 export const NexoLogo = ({ size = 22 }: { size?: number }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="none" aria-hidden>
-    <rect x="2" y="2" width="20" height="20" rx="6" fill="currentColor" />
+    <rect x="2" y="2" width="20" height="20" rx="6" fill="#0062C4" />
     <path d="M7 17V7l10 10V7" stroke="#fff" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
   </svg>
 );

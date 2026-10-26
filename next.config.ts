@@ -7,6 +7,9 @@ const nextConfig: NextConfig = {
   // Fixa a raiz do projeto (há um lockfile no diretório home que confunde a
   // detecção automática do Next).
   outputFileTracingRoot: __dirname,
+  // Oculta o selo de dev do Next, que flutua sobre o canto inferior esquerdo da
+  // interface (sidebar/rail).
+  devIndicators: false,
 };
 
 export default nextConfig;
